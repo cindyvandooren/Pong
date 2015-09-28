@@ -1,0 +1,74 @@
+html, body, figure, figcaption, ul, li, h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  text-align: inherit;
+}
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+body.grey {
+    background: rgba(92, 88, 88, 0.6);
+}
+
+h1 {
+  font-size: 36px;
+  margin: 20px;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 16px;
+}
+
+ul {
+  position: relative;
+  list-style: none;
+}
+
+ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.icons > li {
+  margin: 0 20px;
+}
+
+.fa:hover {
+  cursor: pointer;
+  color: grey;
+}
+
+.fa {
+  color: black;
+}
+
+.icons {
+  width: 250px;
+  position: relative;
+  margin: 0 auto;
+}
