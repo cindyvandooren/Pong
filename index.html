@@ -18,6 +18,42 @@
       </ul>
       <h3>Created by: Cindy Van Dooren</h3>
     </div>
-    <canvas id="PongField" width="200" height="100"></canvas>
+    <canvas id="PongField"></canvas>
   </body>
 </html>
+
+
+<script type="application/javascript">
+      (function () {
+        // Setting up canvas including center and sizes
+        var canvasEl = document.getElementById("PongField");
+        canvasEl.width = Pong.Game.DIM_X;
+        canvasEl.height = Pong.Game.DIM_Y;
+        var ctx = canvasEl.getContext("2d");
+        var centerX = canvasEl.width / 2;
+        var centerY = canvasEl.height / 2;
+
+        // Drawing the actual playing field
+        ctx.fillStyle = Pong.Game.BG_COLOR;
+        ctx.fillRect(0, 0, Pong.Game.DIM_X, Pong.Game.DIM_Y);
+
+        // Drawing middle line on canvas
+        ctx.strokeStyle = Pong.Game.LINE_COLOR;
+        ctx.lineWidth = 10;
+        ctx.moveTo(400, 0);
+        ctx.lineTo(400, 800);
+        ctx.stroke();
+
+        // Drawing outer middle circle on canvas        
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, Pong.Game.L_CIRCLE_R, 0, 2 * Math.PI, false);
+        ctx.strokeStyle = Pong.Game.LINE_COLOR;
+        ctx.stroke();
+
+        // Drawing inner middle circle on canvas
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, Pong.Game.S_CIRCLE_R, 0, 2 * Math.PI, false);
+        ctx.fillStyle = Pong.Game.LINE_COLOR;
+        ctx.fill();
+      })();
+    </script>
