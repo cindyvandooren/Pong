@@ -8,11 +8,15 @@
   	this.width = width;
   	this.height = height;
   	this.board = new Game.Board(this.context, this.width, this.height);
+  	// this.leftPaddle = new Game.Paddle(this.context, this.board);
+  	// this.rightPaddle = new Game.Paddle(this.context, this.board);
   	this.ball = new Game.Ball(this.context, this.board);
   };
 
   Game.prototype.step = function () {
   	this.board.render();
+  	// this.leftPaddle.render();
+  	// this.rightPaddle.render();
   	this.ball.render();
   }
 
@@ -35,30 +39,54 @@
   };
 
   Board.prototype.render = function () {
-  	// Draw the background of the board
-  	this.context.fillStyle = "#078C22";
-  	this.context.fillRect(0, 0, this.width, this.height);
-
-  	// Draw the middle line
   	var middleX = this.width / 2;
   	var middleY = this.height / 2;
-  	this.context.strokeStyle = "#ffffff";
-  	this.context.lineWidth = 10;
-  	this.context.moveTo(middleX, 0);
-  	this.context.lineTo(middleX, this.width);
+
+  	// Background of the board
+  	this.context.beginPath();
+  	this.context.rect(0, 0, this.width, this.height);	
+  	this.context.fillStyle = "#078C22";
+  	this.context.fill();
   	this.context.stroke();
 
-  	// Draw the outer middle circle
+  	// Middle line
+  	this.context.strokeStyle = "#ffffff";
+  	this.context.lineWidth = 5;
+  	this.context.moveTo(middleX, 0);
+  	this.context.lineTo(middleX, this.height);
+
+  	// Left gutter
+  	this.context.moveTo(15, 0);
+  	this.context.lineTo(15, this.height);
+
+  	// Right gutter
+  	this.context.moveTo(this.width - 15, 0);
+  	this.context.lineTo(this.width - 15, this.height);
+  	this.context.stroke();
+
+  	// Outer middle circle
   	this.context.beginPath();
   	this.context.arc(middleX, middleY, 80, 0, 2 * Math.PI, false);
   	this.context.strokeStyle = "#ffffff";
   	this.context.stroke();
 
-  	// Draw the inner middle circle
+  	// Inner middle circle
   	this.context.beginPath();
   	this.context.arc(middleX, middleY, 20, 0, 2 * Math.PI, false);
   	this.context.fillStyle = "#ffffff";
   	this.context.fill();
+  };
+
+  var Paddle = Game.Paddle = function (context, board) {
+  	this.context = context;
+  	this.board = board;
+  };
+
+  // Make sure to draw two paddles. Different approach when left and right paddle.
+  Paddle.prototype.render = function () {
+  	this.context.strokeStyle = "#f2f20c";
+  	this.context.lineWidth = 10;
+
   };
 
   var Ball = Game.Ball = function (context, board) {
