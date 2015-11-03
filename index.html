@@ -27,12 +27,12 @@
       (function () {
         // Setting up canvas including center and sizes
         var pongCanvas = document.getElementById("PongField");
-        pongCanvas.width = 800;
+        pongCanvas.width = 700;
         pongCanvas.height = 400;
         var context = pongCanvas.getContext("2d");
 
         // Start a new game
         var game = new Pong.Game(context, pongCanvas.width, pongCanvas.height);
-        game.step();
+        game.start();
       })();
     </script>
